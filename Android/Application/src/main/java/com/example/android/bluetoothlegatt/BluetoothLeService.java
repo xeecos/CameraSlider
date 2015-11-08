@@ -29,6 +29,7 @@ import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -184,6 +185,7 @@ public class BluetoothLeService extends Service {
         // BluetoothManager.
         if (mBluetoothManager == null) {
             mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+            handler.postDelayed(runnable,40); // 开始Timer
             if (mBluetoothManager == null) {
                 Log.e(TAG, "Unable to initialize BluetoothManager.");
                 return false;
@@ -296,16 +298,35 @@ public class BluetoothLeService extends Service {
         }
         mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
 
-        // This is specific to Heart Rate Measurement.
-        if (UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
-                    UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
-            descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
-            mBluetoothGatt.writeDescriptor(descriptor);
-        }
     }
+    private Handler handler = new Handler( );
+
+    private Runnable runnable = new Runnable( ) {
+        public void run ( ) {
+            if(bufferLength>0) {
+                int len = Math.min(bufferLength,20);
+                byte[] bytes = new byte[len];
+                for(int i=0;i<len;i++){
+                    bytes[i] = buffer[i];
+                    buffer[i] = buffer[i+len];
+                }
+                bufferLength -= len;
+                mWriteCharateristic.setValue(bytes);
+                mBluetoothGatt.writeCharacteristic(mWriteCharateristic);
+            }
+            handler.postDelayed(this,40);
+        }
+    };
+    private int bufferLength = 0;
+    private byte[] buffer = new byte[100];
+    private BluetoothGattCharacteristic mWriteCharateristic;
     public void write(byte[] bytes, BluetoothGattCharacteristic characteristic){
-        mBluetoothGatt.writeCharacteristic(characteristic);
+        Log.d("ble","writting");
+        for(int i=0;i<bytes.length;i++) {
+            buffer[bufferLength] = bytes[i];
+            bufferLength++;
+        }
+        mWriteCharateristic = characteristic;
     }
     /**
      * Retrieves a list of supported GATT services on the connected device. This should be

@@ -141,7 +141,7 @@ public class DeviceControlActivity extends Activity {
                             //mBluetoothLeService.write(characteristic);
                         }
                         if ((charaProp & BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE) == BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE) {
-                            mBluetoothLeService.write("xyz abc end world\n".getBytes(),characteristic);
+                            mBluetoothLeService.write("xyz abc end world 1234567890\n".getBytes(),characteristic);
                         }
                         return true;
                     }

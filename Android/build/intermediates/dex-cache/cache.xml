@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/exploded-aar/com.android.support/support-v13/23.0.0/jars/classes.jar"
+        jar="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/pre-dexed/debug/classes-714598c992f33c823c84f4fec4b042e9a0ade51d.jar" />
+    </item>
+    <item
+        jar="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/exploded-aar/com.android.support/support-v13/23.0.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="bb0ac3f3ee2d71854501cc28e52cc84a20209b41">
-        <dex dex="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/pre-dexed/debug/classes-6f8b7564c8620e5671897fdc117f062fbe8c06dd.jar" />
+        <dex dex="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/pre-dexed/debug/classes-0a1c8f2cc9b08dc8e52d6a576b71b61d36f99ded.jar" />
+    </item>
+    <item
+        jar="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-ef4f351d0d5200fe29ab476a5430cc42da8aee1b.jar" />
+    </item>
+    <item
+        jar="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/pre-dexed/debug/classes-77e9fdda99cf122745dfbc34d6558a66f0f7dc0b.jar" />
     </item>
     <item
         jar="/Volumes/Data/AndroidSDK/adt/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.0/support-annotations-23.0.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
-        <dex dex="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-060b1a324e7c6673de6885d45558e7b14d11cce6.jar" />
+        <dex dex="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/pre-dexed/debug/support-annotations-23.0.0-060b1a324e7c6673de6885d45558e7b14d11cce6.jar" />
     </item>
     <item
-        jar="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/libs/internal_impl-23.0.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
-        <dex dex="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-c8b7e59280eb3c3aeabdbf65f429c12c5c39b800.jar" />
-    </item>
-    <item
-        jar="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
-        <dex dex="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/pre-dexed/debug/classes-465113b198a3052c454e245f6743b1990a2b5975.jar" />
-    </item>
-    <item
-        jar="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/exploded-aar/com.android.support/support-v13/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jar="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/exploded-aar/com.android.support/support-v13/23.0.0/jars/libs/internal_impl-23.0.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="5d4bccb885c8a89d066ecb6c4addb553a99a79a2">
-        <dex dex="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-8164a8ff8ed17e88baae1178a78e0ed6a43e96fc.jar" />
-    </item>
-    <item
-        jar="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
-        <dex dex="/Volumes/Data/Projects/BluetoothLeGatt/Application/build/intermediates/pre-dexed/debug/classes-5c4ed62235037ede50954240711385d1d7a11962.jar" />
+        <dex dex="/Volumes/Data/Projects/CameraSlider/Android/Application/build/intermediates/pre-dexed/debug/internal_impl-23.0.0-87cf8bebfa0174bb4c45d16576f08a575bbac396.jar" />
     </item>
 
 </items>
