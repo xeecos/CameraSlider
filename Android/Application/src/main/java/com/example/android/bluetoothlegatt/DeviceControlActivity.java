@@ -191,7 +191,7 @@ public class DeviceControlActivity extends Activity {
         btSpeedUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSpeed += 10;
+                mSpeed += 5;
                 if(mSpeed>100){
                     mSpeed = 100;
                 }
@@ -207,7 +207,7 @@ public class DeviceControlActivity extends Activity {
         btSpeedDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSpeed -= 10;
+                mSpeed -= 5;
                 if(mSpeed<0){
                     mSpeed = 0;
                 }
