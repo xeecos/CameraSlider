@@ -10,25 +10,26 @@ void setup() {
   stp.setAcceleration(1000);
 }
 String buffer = "";
-int speed = 0;
+int targetSpeed = 0;
 int state = 0;
+float currentSpeed = 0;
 void loop() {
   if(Serial.available()){
     char c = Serial.read();
     if(c=='\n'){
       if(buffer.indexOf("forward ")>-1){
-        speed = buffer.substring(buffer.indexOf(" ")).toInt();
-        stp.setSpeed(-speed*80);
+        targetSpeed = buffer.substring(buffer.indexOf(" ")).toInt();
+        
         state = 1;
       }else if(buffer.indexOf("backward ")>-1){
-        speed = buffer.substring(buffer.indexOf(" ")).toInt();
+        targetSpeed = buffer.substring(buffer.indexOf(" ")).toInt();
         stp.setSpeed(speed*80);
         state = 2;
       }else if(buffer.indexOf("stop")>-1){
-        speed = 0;
+        targetSpeed = 0;
         state = 0;
       }
-      disp.display(speed);
+      disp.display(targetSpeed);
       buffer = "";
     }else{
       buffer+=c;
@@ -36,15 +37,21 @@ void loop() {
   }
   if(state==2){
     if(port.dpRead2()==1){
-      speed = 0;
+      targetSpeed = 0;
+      currentSpeed = 0;
     }
+    currentSpeed -= (currentSpeed+targetSpeed*80)*0.02;
+    stp.setSpeed(currentSpeed);
   }
   if(state==1){
     if(port.dpRead1()==1){
-      speed = 0;
+      targetSpeed = 0;
+      currentSpeed = 0;
     }
+    currentSpeed -= (currentSpeed-targetSpeed*80)*0.02;
+    stp.setSpeed(currentSpeed);
   }
-  if(speed>0){
+  if(abs(currentSpeed)>0){
     stp.runSpeed();
   }
 }
