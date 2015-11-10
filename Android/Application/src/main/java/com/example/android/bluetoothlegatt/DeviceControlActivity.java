@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
@@ -153,7 +154,8 @@ public class DeviceControlActivity extends Activity {
         mGattServicesList.setAdapter((SimpleExpandableListAdapter) null);
         mDataField.setText(R.string.no_data);
     }
-
+    private int mSpeed = 50;
+    private int mState = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,7 +171,62 @@ public class DeviceControlActivity extends Activity {
         mGattServicesList.setOnChildClickListener(servicesListClickListner);
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         mDataField = (TextView) findViewById(R.id.data_value);
-
+        Button btForward = (Button)findViewById(R.id.btForward);
+        btForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mState = 1;
+                mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+            }
+        });
+        Button btBackward = (Button)findViewById(R.id.btBackward);
+        btBackward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mState = 2;
+                mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+            }
+        });
+        Button btSpeedUp = (Button)findViewById(R.id.btSpeedUp);
+        btSpeedUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeed += 5;
+                if(mSpeed>100){
+                    mSpeed = 100;
+                }
+                if(mState==1){
+                    mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                }
+                if(mState==2){
+                    mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                }
+            }
+        });
+        Button btSpeedDown = (Button)findViewById(R.id.btSpeedDown);
+        btSpeedDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeed -= 5;
+                if(mSpeed<0){
+                    mSpeed = 0;
+                }
+                if(mState==1){
+                    mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                }
+                if(mState==2){
+                    mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                }
+            }
+        });
+        Button btStop = (Button)findViewById(R.id.btStop);
+        btStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mState = 0;
+                mBluetoothLeService.write(("stop\n").getBytes(),mWriteNoResponseCharacteristic);
+            }
+        });
         getActionBar().setTitle(mDeviceName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
