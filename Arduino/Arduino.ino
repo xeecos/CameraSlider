@@ -10,26 +10,25 @@ void setup() {
   stp.setAcceleration(1000);
 }
 String buffer = "";
-int targetSpeed = 0;
+float targetSpeed = 0;
 int state = 0;
 float currentSpeed = 0;
+float dir = 1;
 void loop() {
-  if(Serial.available()){
+  while(Serial.available()){
     char c = Serial.read();
     if(c=='\n'){
       if(buffer.indexOf("forward ")>-1){
-        targetSpeed = buffer.substring(buffer.indexOf(" ")).toInt();
-        
         state = 1;
-      }else if(buffer.indexOf("backward ")>-1){
         targetSpeed = buffer.substring(buffer.indexOf(" ")).toInt();
-        stp.setSpeed(speed*80);
+      }else if(buffer.indexOf("backward ")>-1){
         state = 2;
+        targetSpeed = buffer.substring(buffer.indexOf(" ")).toInt();
       }else if(buffer.indexOf("stop")>-1){
         targetSpeed = 0;
         state = 0;
       }
-      disp.display(targetSpeed);
+      //disp.display(targetSpeed);
       buffer = "";
     }else{
       buffer+=c;
@@ -40,7 +39,12 @@ void loop() {
       targetSpeed = 0;
       currentSpeed = 0;
     }
-    currentSpeed -= (currentSpeed+targetSpeed*80)*0.02;
+    if(currentSpeed>targetSpeed*80){
+      currentSpeed -= dir;
+    }
+    if(currentSpeed<targetSpeed*80){
+      currentSpeed += dir;
+    }
     stp.setSpeed(currentSpeed);
   }
   if(state==1){
@@ -48,10 +52,25 @@ void loop() {
       targetSpeed = 0;
       currentSpeed = 0;
     }
-    currentSpeed -= (currentSpeed-targetSpeed*80)*0.02;
+    if(currentSpeed>-targetSpeed*80){
+      currentSpeed -= dir;
+    }
+    if(currentSpeed<-targetSpeed*80){
+      currentSpeed += dir;
+    }
     stp.setSpeed(currentSpeed);
   }
-  if(abs(currentSpeed)>0){
+  if(state==0){
+    targetSpeed = 0;
+    if(currentSpeed>0){
+      currentSpeed -= dir;
+    }
+    if(currentSpeed<0){
+      currentSpeed += dir;
+    }
+    stp.setSpeed(currentSpeed);
+  }
+  if(abs(currentSpeed)>2){
     stp.runSpeed();
   }
 }
