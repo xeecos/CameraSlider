@@ -1,81 +1,55 @@
-#include <MeOrion.h>
-MeStepper stp(PORT_1);
-MePort port(PORT_3);
-Me7SegmentDisplay disp(PORT_4);
-void setup() {
-  // put your setup code here, to run once:
-  
-  Serial.begin(115200);
-  stp.setMaxSpeed(10000);
-  stp.setAcceleration(1000);
-}
+//#include <SoftwareSerial.h>
+//SoftwareSerial sw(A3,A2);
+int dirPin = 11;
+int stepPin = 10;
+float speed = 0;
 String buffer = "";
-float targetSpeed = 0;
-int state = 0;
-float currentSpeed = 0;
-float dir = 1;
+void moveStep(boolean dir){
+  digitalWrite(dirPin,dir?LOW:HIGH);
+  digitalWrite(stepPin,HIGH);
+  delayMicroseconds(1);
+  digitalWrite(stepPin,LOW);
+  delayMicroseconds(1); 
+}
+void runSpeed(){
+  int time = 0;
+  if(speed>0){
+    moveStep(false);
+    time = speed;
+  }else if(speed<0){
+    moveStep(true);
+    time = -speed;
+  }
+  delay(time);
+}
+void setup() {
+  pinMode(dirPin, OUTPUT);
+  pinMode(stepPin, OUTPUT);
+  //sw.begin(115200);
+  Serial.begin(115200);
+}
 void loop() {
-  while(Serial.available()){
+  if(Serial.available()){
     char c = Serial.read();
+    buffer+=c;
     if(c=='\n'){
-      if(buffer.indexOf("forward ")>-1){
-        state = 1;
-        targetSpeed = buffer.substring(buffer.indexOf(" ")).toInt();
-      }else if(buffer.indexOf("backward ")>-1){
-        state = 2;
-        targetSpeed = buffer.substring(buffer.indexOf(" ")).toInt();
-      }else if(buffer.indexOf("stop")>-1){
-        targetSpeed = 0;
-        state = 0;
+      int i = buffer.lastIndexOf("forward");
+      int n = 0;
+      if(i>-1){
+        speed = 200.0/(1.0+buffer.substring(8,buffer.length()-1).toInt());
+      }else{
+        i = buffer.lastIndexOf("backward");
+        if(i>-1){
+          speed = -200.0/(1.0+buffer.substring(9,buffer.length()-1).toInt());
+        }else{
+          i = buffer.lastIndexOf("stop");
+          if(i>-1){
+          speed = 0;
+          }
+        }
       }
-      //disp.display(targetSpeed);
-      buffer = "";
-    }else{
-      buffer+=c;
+     buffer="";
     }
   }
-  if(state==2){
-    if(port.dpRead2()==1){
-      targetSpeed = 0;
-      currentSpeed = 0;
-    }
-    if(currentSpeed>targetSpeed*80){
-      currentSpeed -= dir;
-    }
-    if(currentSpeed<targetSpeed*80){
-      currentSpeed += dir;
-    }
-    stp.setSpeed(currentSpeed);
-  }
-  if(state==1){
-    if(port.dpRead1()==1){
-      targetSpeed = 0;
-      currentSpeed = 0;
-    }
-    if(currentSpeed>-targetSpeed*80){
-      currentSpeed -= dir;
-    }
-    if(currentSpeed<-targetSpeed*80){
-      currentSpeed += dir;
-    }
-    stp.setSpeed(currentSpeed);
-  }
-  if(state==0){
-    targetSpeed = 0;
-    if(currentSpeed>0){
-      currentSpeed -= dir;
-    }
-    if(currentSpeed<0){
-      currentSpeed += dir;
-    }
-    stp.setSpeed(currentSpeed);
-  }
-  if(abs(currentSpeed)>2){
-    stp.runSpeed();
-  }
+  runSpeed();
 }
-
-void setSpeed(float spd){
-  stp.setSpeed(spd);
-}
-
