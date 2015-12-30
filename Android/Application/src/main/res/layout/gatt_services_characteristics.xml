@@ -72,6 +72,15 @@
             android:layout_width="match_parent"
             android:layout_height="66dp"
         android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stop"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textSize="16dp" />
+
     <LinearLayout android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -88,7 +97,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1"
+                android:weightSum="1">
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="+1"
+                    android:id="@+id/btSpeedUp1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.61" />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -100,7 +120,7 @@
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Backward"
                     android:id="@+id/btBackward" />
@@ -110,7 +130,16 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1">
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-1"
+                    android:id="@+id/btSpeedDown1"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -126,14 +155,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="center"
+                android:weightSum="1">
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Speed Up"
-                    android:id="@+id/btSpeedUp" />
+                    android:text="+5"
+                    android:id="@+id/btSpeedUp"
+                    android:layout_weight="0.96" />
             </LinearLayout>
 
             <LinearLayout
@@ -147,7 +178,7 @@
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Stop"
                     android:id="@+id/btStop" />
@@ -163,9 +194,9 @@
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Speed Down"
+                    android:text="-5"
                     android:id="@+id/btSpeedDown"
                     android:gravity="center" />
             </LinearLayout>
@@ -181,7 +212,16 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1">
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="+10"
+                    android:id="@+id/btSpeedUp2"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -192,7 +232,7 @@
 
                 <Button
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Forward"
                     android:id="@+id/btForward" />
@@ -203,7 +243,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1">
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="-10"
+                    android:id="@+id/btSpeedDown2"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

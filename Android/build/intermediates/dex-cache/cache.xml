@@ -2,46 +2,46 @@
 <items version="2" >
 
     <item
-        jar="D:\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
-        <dex dex="D:\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\classes-5d0d40667054da783c7162b0ba925a49f0b1d5c3.jar" />
-    </item>
-    <item
-        jar="D:\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="bb0ac3f3ee2d71854501cc28e52cc84a20209b41">
-        <dex dex="D:\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\classes-55a1ead6549df568bf30c0bf39821721a1500bbf.jar" />
-    </item>
-    <item
-        jar="D:\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
-        <dex dex="D:\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\classes-a16cba8d157f48a789820d5dd3c6221ca83fe2e8.jar" />
-    </item>
-    <item
-        jar="D:\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
-        <dex dex="D:\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-0eaa1980d297af8ea2f92548dd27de4b1c298699.jar" />
-    </item>
-    <item
-        jar="G:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
-        <dex dex="D:\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-0a2846723612861ca079b9912082dd5a43964d6e.jar" />
+        <dex dex="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-3f77e93e5ed0a0d7276beffe8309c2818d2dc483.jar" />
     </item>
     <item
-        jar="D:\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jar="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\classes-81e68b7351ca9b85da9371a2f39005649ef58bfe.jar" />
+    </item>
+    <item
+        jar="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\libs\internal_impl-23.0.0.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="5d4bccb885c8a89d066ecb6c4addb553a99a79a2">
-        <dex dex="D:\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-6cd2ec1baca2bf24435674badec22c79a1358c09.jar" />
+        <dex dex="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-93398658674d3258cf5250e80b0dbd137fdaefb1.jar" />
+    </item>
+    <item
+        jar="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="bb0ac3f3ee2d71854501cc28e52cc84a20209b41">
+        <dex dex="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\classes-7feaa85b5e21f2fb02940d54ba987385be575c9d.jar" />
+    </item>
+    <item
+        jar="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-cab3018825dbab6d572c0b2ffccc238804141b2d.jar" />
+    </item>
+    <item
+        jar="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="C:\Users\indream\Documents\Projects\CameraSlider\Android\Application\build\intermediates\pre-dexed\debug\classes-15240915fee2bdc0b14c9a6891a024e5fde591c1.jar" />
     </item>
 
 </items>
