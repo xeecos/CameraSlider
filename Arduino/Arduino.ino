@@ -1,5 +1,5 @@
-#include <SoftwareSerial.h>
-SoftwareSerial sw(A3,A2);
+//#include <SoftwareSerial.h>
+//SoftwareSerial sw(A3,A2);
 int dirPin = 11;
 int stepPin = 10;
 float speed = 0;
@@ -37,12 +37,12 @@ void runSpeed(){
 void setup() {
   pinMode(dirPin, OUTPUT);
   pinMode(stepPin, OUTPUT);
-  sw.begin(115200);
+  //sw.begin(115200);
   Serial.begin(115200);
 }
 void loop() {
-  if(sw.available()){
-    char c = sw.read();
+  if(Serial.available()){
+    char c = Serial.read();
     buffer+=c;
     if(c=='\n'){
       int i = buffer.lastIndexOf("forward");
