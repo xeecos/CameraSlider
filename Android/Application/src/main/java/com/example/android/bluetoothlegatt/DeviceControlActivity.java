@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class DeviceControlActivity extends Activity {
 
     private TextView mConnectionState;
     private TextView mDataField;
+    private TextView mActionField;
     private String mDeviceName;
     private String mDeviceAddress;
     private ExpandableListView mGattServicesList;
@@ -156,15 +158,16 @@ public class DeviceControlActivity extends Activity {
     }
     private int mSpeed = 50;
     private int mState = 0;
+    private SharedPreferences mUser;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gatt_services_characteristics);
-
+        mUser = getSharedPreferences("user",Activity.MODE_PRIVATE);
         final Intent intent = getIntent();
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
-
+        mActionField = (TextView)findViewById(R.id.textView);
         // Sets up UI references.
         ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
         mGattServicesList = (ExpandableListView) findViewById(R.id.gatt_services_list);
@@ -172,10 +175,13 @@ public class DeviceControlActivity extends Activity {
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         mDataField = (TextView) findViewById(R.id.data_value);
         Button btForward = (Button)findViewById(R.id.btForward);
+
+        mSpeed = mUser.getInt("speed",50);
         btForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mState = 1;
+                mActionField.setText("forward "+mSpeed);
                 mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
             }
         });
@@ -184,6 +190,7 @@ public class DeviceControlActivity extends Activity {
             @Override
             public void onClick(View v) {
                 mState = 2;
+                mActionField.setText("backward "+mSpeed);
                 mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
             }
         });
@@ -195,11 +202,58 @@ public class DeviceControlActivity extends Activity {
                 if(mSpeed>100){
                     mSpeed = 100;
                 }
+                SharedPreferences.Editor editor = mUser.edit();
+                editor.putInt("speed",mSpeed);
+                editor.commit();
                 if(mState==1){
                     mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("forward " + mSpeed);
                 }
                 if(mState==2){
                     mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("backward "+mSpeed);
+                }
+            }
+        });
+        Button btSpeedUp1 = (Button)findViewById(R.id.btSpeedUp1);
+        btSpeedUp1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeed += 1;
+                if(mSpeed>100){
+                    mSpeed = 100;
+                }
+                SharedPreferences.Editor editor = mUser.edit();
+                editor.putInt("speed",mSpeed);
+                editor.commit();
+                if(mState==1){
+                    mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("forward " + mSpeed);
+                }
+                if(mState==2){
+                    mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("backward "+mSpeed);
+                }
+            }
+        });
+        Button btSpeedUp2 = (Button)findViewById(R.id.btSpeedUp2);
+        btSpeedUp2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeed += 10;
+                if(mSpeed>100){
+                    mSpeed = 100;
+                }
+                SharedPreferences.Editor editor = mUser.edit();
+                editor.putInt("speed",mSpeed);
+                editor.commit();
+                if(mState==1){
+                    mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("forward " + mSpeed);
+                }
+                if(mState==2){
+                    mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("backward "+mSpeed);
                 }
             }
         });
@@ -211,12 +265,62 @@ public class DeviceControlActivity extends Activity {
                 if(mSpeed<0){
                     mSpeed = 0;
                 }
+                SharedPreferences.Editor editor = mUser.edit();
+                editor.putInt("speed",mSpeed);
+                editor.commit();
                 if(mState==1){
                     mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("forward " + mSpeed);
                 }
                 if(mState==2){
                     mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("backward "+mSpeed);
                 }
+
+            }
+        });
+        Button btSpeedDown1 = (Button)findViewById(R.id.btSpeedDown1);
+        btSpeedDown1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeed -= 1;
+                if(mSpeed<0){
+                    mSpeed = 0;
+                }
+                SharedPreferences.Editor editor = mUser.edit();
+                editor.putInt("speed",mSpeed);
+                editor.commit();
+                if(mState==1){
+                    mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("forward " + mSpeed);
+                }
+                if(mState==2){
+                    mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("backward "+mSpeed);
+                }
+
+            }
+        });
+        Button btSpeedDown2 = (Button)findViewById(R.id.btSpeedDown2);
+        btSpeedDown2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSpeed -= 10;
+                if(mSpeed<0){
+                    mSpeed = 0;
+                }
+                SharedPreferences.Editor editor = mUser.edit();
+                editor.putInt("speed",mSpeed);
+                editor.commit();
+                if(mState==1){
+                    mBluetoothLeService.write(("forward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("forward " + mSpeed);
+                }
+                if(mState==2){
+                    mBluetoothLeService.write(("backward "+mSpeed+"\n").getBytes(),mWriteNoResponseCharacteristic);
+                    mActionField.setText("backward "+mSpeed);
+                }
+
             }
         });
         Button btStop = (Button)findViewById(R.id.btStop);
@@ -224,6 +328,7 @@ public class DeviceControlActivity extends Activity {
             @Override
             public void onClick(View v) {
                 mState = 0;
+                mActionField.setText("stop ");
                 mBluetoothLeService.write(("stop\n").getBytes(),mWriteNoResponseCharacteristic);
             }
         });
